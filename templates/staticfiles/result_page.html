@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Конвертер одиниць</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            width: 300px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #000;
+        }
+        .tabs {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 20px;
+        }
+        .tabs a {
+            text-decoration: none;
+            color: black;
+        }
+        .tabs a.active {
+            color: blue;
+            text-decoration: underline;
+        }
+        .result {
+            font-size: 20px;
+            margin-bottom: 20px;
+        }
+        .form-group button {
+            width: 100%;
+            padding: 10px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Конвертер одиниць</h1>
+        <div class="tabs">
+            <a href="{% url 'index' %}">Довжина</a>
+            <a href="{% url 'weight' %}">Вага</a>
+            <a href="{% url 'temperature' %}">Температура</a>
+        </div>
+        <div class="result">
+            Результат вашого обчислення<br>
+            {% if result %}
+            <strong>{{ result }}</strong>
+            {% endif %}
+        </div>
+        <div class="form-group">
+            <form action={{ request.path }}>
+                <button type="submit">Скинути</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

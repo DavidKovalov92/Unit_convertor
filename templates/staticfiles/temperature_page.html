@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Конвертер одиниць</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            width: 300px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #000;
+        }
+        .tabs {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 20px;
+        }
+        .tabs a {
+            text-decoration: none;
+            color: black;
+        }
+        .tabs a.active {
+            color: blue;
+            text-decoration: underline;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        .form-group input {
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+        }
+        .form-group button {
+            width: 100%;
+            padding: 10px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Конвертер одиниць</h1>
+        <div class="tabs">
+            <a href="{% url 'index' %}">Довжина</a>
+            <a href="{% url 'weight' %}">Вага</a>
+            <a href="{% url 'temperature' %}"  class=active>Температура</a>
+        </div>
+        <form method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="length">Введіть температуру для конвертації</label>
+                {{ form.number }}
+            <div class="form-group">
+                <label for="unitFrom">Одиниця для конвертації з</label>
+                {{form.first_unit}}
+            </div>
+            <div class="form-group">
+                <label for="unitTo">Одиниця для конвертації в</label>
+                {{ form.second_unit }}
+            </div>
+                <button type="submit" class="btn btn-primary">Конвертувати</button>
+        </form>
+    </div>
+</body>
+</html>
